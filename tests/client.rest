@@ -1,8 +1,17 @@
-###
-GET http://localhost:3000/api/cats HTTP/1.1
-
-###
-POST http://localhost:3000/api/cats HTTP/1.1
+### Create a new user
+POST http://localhost:3000/api/users
 Content-Type: application/json
 
-{"name": "Fluffy"}
+{
+  "username": "rest-test-user",
+  "description": "Created by REST Client test",
+}
+
+### Create user with duplicate username (should return 409)
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "username": "rest-test-user",
+  "description": "Duplicate username test"
+}
