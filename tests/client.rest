@@ -1,17 +1,50 @@
+@userid = 0c2d6510-ed9f-4949-ad96-c0d8c383202c
+
 ### Create a new user
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
   "username": "rest-test-user",
-  "description": "Created by REST Client test",
+  "description": "Created by REST Client test"
 }
 
-### Create user with duplicate username (should return 409)
-POST http://localhost:3000/api/users
+### Get All users
+GET http://localhost:3000/api/users
+
+### Get the user by ID
+GET http://localhost:3000/api/users/{{userid}}
+
+### Update the user
+PUT http://localhost:3000/api/users/{{userid}}
 Content-Type: application/json
 
 {
-  "username": "rest-test-user",
-  "description": "Duplicate username test"
+  "username": "rest-test-user-updated",
+  "description": "Updated by REST Client test"
+}
+
+### Delete the user
+DELETE http://localhost:3000/api/users/{{userid}}
+
+### Create a new comic
+POST http://localhost:3000/api/comics
+Content-Type: application/json
+
+{
+  "title": "Test Comic",
+  "description": "Created by REST Client test",
+  "authorId": "{{userid}}",
+  "status": "finished"
+}
+
+### Create a new comic non-existing status
+POST http://localhost:3000/api/comics
+Content-Type: application/json
+
+{
+  "title": "Test Comic",
+  "description": "Created by REST Client test",
+  "authorId": "{{userid}}",
+  "status": "non-existing-status"
 }
